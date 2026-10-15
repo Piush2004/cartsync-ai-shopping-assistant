@@ -1,0 +1,10 @@
+measurement: shoulder_width
+category: skeletal
+required_landmarks:
+  - left_shoulder
+  - right_shoulder
+required_regions:
+  - upperBody
+minimum_quality: 0.85
+formula: euclidean_distance
+estimated: false

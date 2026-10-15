@@ -1,0 +1,10 @@
+measurement: hip_circumference
+category: circumference
+required_landmarks:
+  - left_hip
+  - right_hip
+required_regions:
+  - lowerBody
+minimum_quality: 0.85
+formula: elliptical_estimation
+estimated: true

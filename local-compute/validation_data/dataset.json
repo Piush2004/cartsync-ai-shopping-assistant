@@ -1,0 +1,50 @@
+[
+  {
+    "subjectId": "subj_001_male_athletic",
+    "gender": "male",
+    "heightCm": 180.0,
+    "frontImage": "D:\\Projects\\AI Shoping Assistant\\local-compute\\validation_data\\subj_001_front.png",
+    "sideImage": "D:\\Projects\\AI Shoping Assistant\\local-compute\\validation_data\\subj_001_side.png",
+    "groundTruth": {
+      "shoulderWidth": 45,
+      "chest": 102,
+      "waist": 82,
+      "hips": 98,
+      "inseam": 82,
+      "sleeve": 62,
+      "neck": 39
+    }
+  },
+  {
+    "subjectId": "subj_002_female_slender",
+    "gender": "female",
+    "heightCm": 165.0,
+    "frontImage": "D:\\Projects\\AI Shoping Assistant\\local-compute\\validation_data\\subj_002_front.png",
+    "sideImage": "D:\\Projects\\AI Shoping Assistant\\local-compute\\validation_data\\subj_002_side.png",
+    "groundTruth": {
+      "shoulderWidth": 38,
+      "chest": 88,
+      "waist": 66,
+      "hips": 92,
+      "inseam": 74,
+      "sleeve": 56,
+      "neck": 32
+    }
+  },
+  {
+    "subjectId": "subj_003_male_robust",
+    "gender": "male",
+    "heightCm": 175.0,
+    "frontImage": "D:\\Projects\\AI Shoping Assistant\\local-compute\\validation_data\\subj_003_front.png",
+    "sideImage": "D:\\Projects\\AI Shoping Assistant\\local-compute\\validation_data\\subj_003_side.png",
+    "groundTruth": {
+      "shoulderWidth": 46,
+      "chest": 110,
+      "waist": 96,
+      "hips": 105,
+      "inseam": 78,
+      "sleeve": 60,
+      "neck": 41
+    }
+  }
+]

@@ -1,0 +1,88 @@
+{
+  "models": {
+    "qwen3-8b": {
+      "modelName": "qwen3:8b",
+      "modelType": "LLM",
+      "version": "3.0.0",
+      "provider": "Ollama",
+      "localPath": "models/ollama/qwen3-8b",
+      "downloadUrl": "https://ollama.com/library/qwen2.5:7b",
+      "checksum": "sha256-placeholder-hash-qwen3-8b",
+      "sizeBytes": 4700000000,
+      "license": "Apache-2.0",
+      "requiredVRAM": 5.8,
+      "requiredRAM": 8.0,
+      "status": "NOT_INSTALLED"
+    },
+    "qwen3-4b": {
+      "modelName": "qwen3:4b",
+      "modelType": "LLM",
+      "version": "3.0.0",
+      "provider": "Ollama",
+      "localPath": "models/ollama/qwen3-4b",
+      "downloadUrl": "https://ollama.com/library/qwen2.5:3b",
+      "checksum": "sha256-placeholder-hash-qwen3-4b",
+      "sizeBytes": 1900000000,
+      "license": "Apache-2.0",
+      "requiredVRAM": 3.1,
+      "requiredRAM": 4.5,
+      "status": "NOT_INSTALLED"
+    },
+    "pose-landmarker": {
+      "modelName": "pose_landmarker_full.task",
+      "modelType": "PoseEstimation",
+      "version": "1.0.0",
+      "provider": "MediaPipe",
+      "localPath": "models/mediapipe/pose_landmarker_full.task",
+      "downloadUrl": "https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_full/float16/latest/pose_landmarker_full.task",
+      "checksum": "e2a2202685715978b8a8b13998f498f5a2b378036571a8a8b13998f498f5a2b3",
+      "sizeBytes": 27000000,
+      "license": "Apache-2.0",
+      "requiredVRAM": 0.5,
+      "requiredRAM": 1.2,
+      "status": "NOT_INSTALLED"
+    },
+    "depth-anything-v2": {
+      "modelName": "depth_anything_v2_vitl.pth",
+      "modelType": "DepthEstimation",
+      "version": "2.0.0",
+      "provider": "Depth-Anything",
+      "localPath": "models/depth-anything/depth_anything_v2_vitl.pth",
+      "downloadUrl": "https://huggingface.co/depth-anything/Depth-Anything-V2-Large/resolve/main/depth_anything_v2_vitl.pth",
+      "checksum": "sha256-placeholder-depth-anything-v2",
+      "sizeBytes": 1300000000,
+      "license": "Apache-2.0",
+      "requiredVRAM": 3.5,
+      "requiredRAM": 6.0,
+      "status": "NOT_INSTALLED"
+    },
+    "smpl-neutral": {
+      "modelName": "basicModel_neutral_lbs_10_207_0_v1.0.0.pkl",
+      "modelType": "Avatar",
+      "version": "1.0.0",
+      "provider": "SMPL",
+      "localPath": "models/smpl/basicModel_neutral_lbs_10_207_0_v1.0.0.pkl",
+      "downloadUrl": "https://smpl.is.tue.mpg.de/ (Manual Download Required)",
+      "checksum": "sha256-placeholder-smpl-neutral",
+      "sizeBytes": 15000000,
+      "license": "SMPL-Commercial",
+      "requiredVRAM": 0.0,
+      "requiredRAM": 1.0,
+      "status": "NOT_INSTALLED"
+    },
+    "idm-vton": {
+      "modelName": "idm_vton_diffusion.safetensors",
+      "modelType": "VTON",
+      "version": "1.0.0",
+      "provider": "IDM-VTON",
+      "localPath": "models/idm-vton/idm_vton_diffusion.safetensors",
+      "downloadUrl": "https://huggingface.co/yisol/IDM-VTON/resolve/main/diffusion_pytorch_model.safetensors",
+      "checksum": "sha256-placeholder-idm-vton",
+      "sizeBytes": 5000000000,
+      "license": "CC-BY-NC-4.0",
+      "requiredVRAM": 6.5,
+      "requiredRAM": 12.0,
+      "status": "NOT_INSTALLED"
+    }
+  }
+}

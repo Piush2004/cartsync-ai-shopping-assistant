@@ -1,0 +1,76 @@
+{
+  "leaderboard": [
+    {
+      "experimentId": "exp_xgb_v1_0",
+      "modelName": "xgb",
+      "hyperparameters": {
+        "n_estimators": 100,
+        "learning_rate": 0.1
+      },
+      "datasetVersion": "1.0.0",
+      "featureCount": 13,
+      "trainingSamples": 288,
+      "validationSamples": 36,
+      "testSamples": 36,
+      "metrics": {
+        "mae": 0.35,
+        "rmse": 0.48,
+        "mape": 0.58,
+        "accuracy": 99.4,
+        "trainingTimeMs": 420.0,
+        "inferenceTimeMs": 1.2,
+        "modelSizeBytes": 245000
+      },
+      "timestamp": "2026-07-02T09:53:14Z",
+      "models": {
+        "chest": {
+          "version": 1,
+          "path": "./experiments/models\\xgb_chest_v1.pkl"
+        }
+      }
+    },
+    {
+      "experimentId": "exp_rf_v1_0",
+      "modelName": "rf",
+      "hyperparameters": {
+        "n_estimators": 50,
+        "max_depth": 3
+      },
+      "datasetVersion": "1.0.0",
+      "featureCount": 13,
+      "trainingSamples": 288,
+      "validationSamples": 36,
+      "testSamples": 36,
+      "metrics": {
+        "mae": 2.15,
+        "rmse": 2.78,
+        "mape": 4.1,
+        "accuracy": 95.9,
+        "trainingTimeMs": 320.0,
+        "inferenceTimeMs": 1.2,
+        "modelSizeBytes": 245000
+      },
+      "timestamp": "2026-07-02T09:53:14Z",
+      "models": {
+        "chest": {
+          "version": 1,
+          "path": "./experiments/models\\rf_chest_v1.pkl"
+        }
+      }
+    }
+  ],
+  "registryIndex": {
+    "rf_chest_v1": {
+      "modelName": "rf_chest",
+      "version": 1,
+      "filename": "rf_chest_v1.pkl",
+      "path": "D:\\Projects\\AI Shoping Assistant\\local-compute\\experiments\\models\\rf_chest_v1.pkl"
+    },
+    "xgb_chest_v1": {
+      "modelName": "xgb_chest",
+      "version": 1,
+      "filename": "xgb_chest_v1.pkl",
+      "path": "D:\\Projects\\AI Shoping Assistant\\local-compute\\experiments\\models\\xgb_chest_v1.pkl"
+    }
+  }
+}

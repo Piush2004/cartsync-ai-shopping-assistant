@@ -1,0 +1,12 @@
+{
+  "train": [
+    "subject_002_female"
+  ],
+  "validation": [
+    "subject_001_male"
+  ],
+  "test": [
+    "subject_003_male_large"
+  ],
+  "seed": 42
+}

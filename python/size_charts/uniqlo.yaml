@@ -1,0 +1,20 @@
+brand: Uniqlo
+region: Global
+gender: Men
+category: Shirt
+version: "2026"
+decision:
+  primary:
+    - chest_circumference
+  secondary: []
+  minimum_required:
+    - chest_circumference
+sizes:
+  - size: S
+    chest_circumference: [80, 88]
+  - size: M
+    chest_circumference: [88, 96]
+  - size: L
+    chest_circumference: [96, 104]
+  - size: XL
+    chest_circumference: [104, 112]

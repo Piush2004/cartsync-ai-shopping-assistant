@@ -1,0 +1,389 @@
+[
+  {
+    "id": "male_indoor_full_sharp.jpg",
+    "category": "sharp",
+    "source": "male_indoor",
+    "resolution": "full",
+    "width": 896,
+    "height": 1200,
+    "generation": "none"
+  },
+  {
+    "id": "male_indoor_full_mild.jpg",
+    "category": "mild",
+    "source": "male_indoor",
+    "resolution": "full",
+    "width": 896,
+    "height": 1200,
+    "generation": "gaussian_blur_sigma_1.5"
+  },
+  {
+    "id": "male_indoor_full_heavy.jpg",
+    "category": "heavy",
+    "source": "male_indoor",
+    "resolution": "full",
+    "width": 896,
+    "height": 1200,
+    "generation": "gaussian_blur_sigma_5"
+  },
+  {
+    "id": "male_indoor_mid_sharp.jpg",
+    "category": "sharp",
+    "source": "male_indoor",
+    "resolution": "mid",
+    "width": 640,
+    "height": 857,
+    "generation": "none"
+  },
+  {
+    "id": "male_indoor_mid_mild.jpg",
+    "category": "mild",
+    "source": "male_indoor",
+    "resolution": "mid",
+    "width": 640,
+    "height": 857,
+    "generation": "gaussian_blur_sigma_1.5"
+  },
+  {
+    "id": "male_indoor_mid_heavy.jpg",
+    "category": "heavy",
+    "source": "male_indoor",
+    "resolution": "mid",
+    "width": 640,
+    "height": 857,
+    "generation": "gaussian_blur_sigma_5"
+  },
+  {
+    "id": "male_indoor_low_sharp.jpg",
+    "category": "sharp",
+    "source": "male_indoor",
+    "resolution": "low",
+    "width": 320,
+    "height": 429,
+    "generation": "none"
+  },
+  {
+    "id": "male_indoor_low_mild.jpg",
+    "category": "mild",
+    "source": "male_indoor",
+    "resolution": "low",
+    "width": 320,
+    "height": 429,
+    "generation": "gaussian_blur_sigma_1.5"
+  },
+  {
+    "id": "male_indoor_low_heavy.jpg",
+    "category": "heavy",
+    "source": "male_indoor",
+    "resolution": "low",
+    "width": 320,
+    "height": 429,
+    "generation": "gaussian_blur_sigma_5"
+  },
+  {
+    "id": "male_indoor_full_motion9.jpg",
+    "category": "motion_blur",
+    "source": "male_indoor",
+    "resolution": "full",
+    "width": 896,
+    "height": 1200,
+    "generation": "horizontal_convolve_9tap"
+  },
+  {
+    "id": "male_indoor_full_motion21.jpg",
+    "category": "motion_blur",
+    "source": "male_indoor",
+    "resolution": "full",
+    "width": 896,
+    "height": 1200,
+    "generation": "horizontal_convolve_21tap"
+  },
+  {
+    "id": "male_indoor_mid_motion9.jpg",
+    "category": "motion_blur",
+    "source": "male_indoor",
+    "resolution": "mid",
+    "width": 640,
+    "height": 857,
+    "generation": "horizontal_convolve_9tap"
+  },
+  {
+    "id": "male_indoor_mid_motion21.jpg",
+    "category": "motion_blur",
+    "source": "male_indoor",
+    "resolution": "mid",
+    "width": 640,
+    "height": 857,
+    "generation": "horizontal_convolve_21tap"
+  },
+  {
+    "id": "female_indoor_full_sharp.jpg",
+    "category": "sharp",
+    "source": "female_indoor",
+    "resolution": "full",
+    "width": 896,
+    "height": 1200,
+    "generation": "none"
+  },
+  {
+    "id": "female_indoor_full_mild.jpg",
+    "category": "mild",
+    "source": "female_indoor",
+    "resolution": "full",
+    "width": 896,
+    "height": 1200,
+    "generation": "gaussian_blur_sigma_1.5"
+  },
+  {
+    "id": "female_indoor_full_heavy.jpg",
+    "category": "heavy",
+    "source": "female_indoor",
+    "resolution": "full",
+    "width": 896,
+    "height": 1200,
+    "generation": "gaussian_blur_sigma_5"
+  },
+  {
+    "id": "female_indoor_mid_sharp.jpg",
+    "category": "sharp",
+    "source": "female_indoor",
+    "resolution": "mid",
+    "width": 640,
+    "height": 857,
+    "generation": "none"
+  },
+  {
+    "id": "female_indoor_mid_mild.jpg",
+    "category": "mild",
+    "source": "female_indoor",
+    "resolution": "mid",
+    "width": 640,
+    "height": 857,
+    "generation": "gaussian_blur_sigma_1.5"
+  },
+  {
+    "id": "female_indoor_mid_heavy.jpg",
+    "category": "heavy",
+    "source": "female_indoor",
+    "resolution": "mid",
+    "width": 640,
+    "height": 857,
+    "generation": "gaussian_blur_sigma_5"
+  },
+  {
+    "id": "female_indoor_low_sharp.jpg",
+    "category": "sharp",
+    "source": "female_indoor",
+    "resolution": "low",
+    "width": 320,
+    "height": 429,
+    "generation": "none"
+  },
+  {
+    "id": "female_indoor_low_mild.jpg",
+    "category": "mild",
+    "source": "female_indoor",
+    "resolution": "low",
+    "width": 320,
+    "height": 429,
+    "generation": "gaussian_blur_sigma_1.5"
+  },
+  {
+    "id": "female_indoor_low_heavy.jpg",
+    "category": "heavy",
+    "source": "female_indoor",
+    "resolution": "low",
+    "width": 320,
+    "height": 429,
+    "generation": "gaussian_blur_sigma_5"
+  },
+  {
+    "id": "female_indoor_full_motion9.jpg",
+    "category": "motion_blur",
+    "source": "female_indoor",
+    "resolution": "full",
+    "width": 896,
+    "height": 1200,
+    "generation": "horizontal_convolve_9tap"
+  },
+  {
+    "id": "female_indoor_full_motion21.jpg",
+    "category": "motion_blur",
+    "source": "female_indoor",
+    "resolution": "full",
+    "width": 896,
+    "height": 1200,
+    "generation": "horizontal_convolve_21tap"
+  },
+  {
+    "id": "female_indoor_mid_motion9.jpg",
+    "category": "motion_blur",
+    "source": "female_indoor",
+    "resolution": "mid",
+    "width": 640,
+    "height": 857,
+    "generation": "horizontal_convolve_9tap"
+  },
+  {
+    "id": "female_indoor_mid_motion21.jpg",
+    "category": "motion_blur",
+    "source": "female_indoor",
+    "resolution": "mid",
+    "width": 640,
+    "height": 857,
+    "generation": "horizontal_convolve_21tap"
+  },
+  {
+    "id": "female_outdoor_full_sharp.jpg",
+    "category": "sharp",
+    "source": "female_outdoor",
+    "resolution": "full",
+    "width": 262,
+    "height": 568,
+    "generation": "none"
+  },
+  {
+    "id": "female_outdoor_full_mild.jpg",
+    "category": "mild",
+    "source": "female_outdoor",
+    "resolution": "full",
+    "width": 262,
+    "height": 568,
+    "generation": "gaussian_blur_sigma_1.5"
+  },
+  {
+    "id": "female_outdoor_full_heavy.jpg",
+    "category": "heavy",
+    "source": "female_outdoor",
+    "resolution": "full",
+    "width": 262,
+    "height": 568,
+    "generation": "gaussian_blur_sigma_5"
+  },
+  {
+    "id": "female_outdoor_mid_sharp.jpg",
+    "category": "sharp",
+    "source": "female_outdoor",
+    "resolution": "mid",
+    "width": 640,
+    "height": 1387,
+    "generation": "none"
+  },
+  {
+    "id": "female_outdoor_mid_mild.jpg",
+    "category": "mild",
+    "source": "female_outdoor",
+    "resolution": "mid",
+    "width": 640,
+    "height": 1387,
+    "generation": "gaussian_blur_sigma_1.5"
+  },
+  {
+    "id": "female_outdoor_mid_heavy.jpg",
+    "category": "heavy",
+    "source": "female_outdoor",
+    "resolution": "mid",
+    "width": 640,
+    "height": 1387,
+    "generation": "gaussian_blur_sigma_5"
+  },
+  {
+    "id": "female_outdoor_low_sharp.jpg",
+    "category": "sharp",
+    "source": "female_outdoor",
+    "resolution": "low",
+    "width": 320,
+    "height": 694,
+    "generation": "none"
+  },
+  {
+    "id": "female_outdoor_low_mild.jpg",
+    "category": "mild",
+    "source": "female_outdoor",
+    "resolution": "low",
+    "width": 320,
+    "height": 694,
+    "generation": "gaussian_blur_sigma_1.5"
+  },
+  {
+    "id": "female_outdoor_low_heavy.jpg",
+    "category": "heavy",
+    "source": "female_outdoor",
+    "resolution": "low",
+    "width": 320,
+    "height": 694,
+    "generation": "gaussian_blur_sigma_5"
+  },
+  {
+    "id": "female_outdoor_full_motion9.jpg",
+    "category": "motion_blur",
+    "source": "female_outdoor",
+    "resolution": "full",
+    "width": 262,
+    "height": 568,
+    "generation": "horizontal_convolve_9tap"
+  },
+  {
+    "id": "female_outdoor_full_motion21.jpg",
+    "category": "motion_blur",
+    "source": "female_outdoor",
+    "resolution": "full",
+    "width": 262,
+    "height": 568,
+    "generation": "horizontal_convolve_21tap"
+  },
+  {
+    "id": "female_outdoor_mid_motion9.jpg",
+    "category": "motion_blur",
+    "source": "female_outdoor",
+    "resolution": "mid",
+    "width": 640,
+    "height": 1387,
+    "generation": "horizontal_convolve_9tap"
+  },
+  {
+    "id": "female_outdoor_mid_motion21.jpg",
+    "category": "motion_blur",
+    "source": "female_outdoor",
+    "resolution": "mid",
+    "width": 640,
+    "height": 1387,
+    "generation": "horizontal_convolve_21tap"
+  },
+  {
+    "id": "real_dark_mirror_selfie.jpg",
+    "category": "lighting_dark",
+    "source": "mirror_dark",
+    "resolution": "full",
+    "width": 896,
+    "height": 1200,
+    "generation": "none_real_photo"
+  },
+  {
+    "id": "normal_reference.jpg",
+    "category": "lighting_normal",
+    "source": "male_indoor",
+    "resolution": "full",
+    "width": 896,
+    "height": 1200,
+    "generation": "none_real_photo"
+  },
+  {
+    "id": "darkened_synthetic.jpg",
+    "category": "lighting_dark_synthetic",
+    "source": "male_indoor",
+    "resolution": "full",
+    "width": 896,
+    "height": 1200,
+    "generation": "modulate_brightness_0.25"
+  },
+  {
+    "id": "overexposed_synthetic.jpg",
+    "category": "lighting_overexposed",
+    "source": "male_indoor",
+    "resolution": "full",
+    "width": 896,
+    "height": 1200,
+    "generation": "modulate_brightness_3.0"
+  }
+]

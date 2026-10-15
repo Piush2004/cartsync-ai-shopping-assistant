@@ -1,0 +1,15 @@
+fastapi==0.109.2
+uvicorn==0.27.1
+pydantic==2.6.1
+pydantic-settings==2.1.0
+firebase-admin==6.4.0
+Pillow>=10.4.0
+pytest==8.0.0
+httpx==0.26.0
+mediapipe>=0.10.9
+opencv-python-headless==4.9.0.80
+requests==2.31.0
+torch>=2.2.0
+transformers>=4.38.0
+numpy>=1.26.0
+pyyaml>=6.0.1

@@ -1,0 +1,47 @@
+{
+  "timestamp": "2026-07-02T10:05:32Z",
+  "developmentMode": false,
+  "modelsAudit": {
+    "validation": {
+      "neutral": {
+        "valid": false,
+        "reason": "File does not exist: ./models/smpl\\basicModel_neutral_lbs_10_207_0_v1.0.0.pkl"
+      },
+      "female": {
+        "valid": false,
+        "reason": "File does not exist: ./models/smpl\\basicModel_f_lbs_10_207_0_v1.0.0.pkl"
+      },
+      "male": {
+        "valid": false,
+        "reason": "File does not exist: ./models/smpl\\basicModel_m_lbs_10_207_0_v1.0.0.pkl"
+      }
+    },
+    "inspection": {
+      "neutral": {
+        "status": "MISSING"
+      },
+      "female": {
+        "status": "MISSING"
+      },
+      "male": {
+        "status": "MISSING"
+      }
+    },
+    "loadTimesMs": {
+      "neutral": 0.0,
+      "female": 0.0,
+      "male": 0.0
+    }
+  },
+  "generationTest": {
+    "status": "FAILED",
+    "timeMs": 0.0,
+    "vertexCount": 0,
+    "faceCount": 0
+  },
+  "performanceMetrics": {
+    "startMemoryMb": 32.38,
+    "peakMemoryMb": 32.38,
+    "netModelRamMb": 0.0
+  }
+}

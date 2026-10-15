@@ -1,0 +1,11 @@
+measurement: sleeve_length
+category: skeletal
+required_landmarks:
+  - left_shoulder
+  - left_elbow
+  - left_wrist
+required_regions:
+  - leftArm
+minimum_quality: 0.85
+formula: piecewise_euclidean
+estimated: false

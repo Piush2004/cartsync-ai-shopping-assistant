@@ -1,0 +1,104 @@
+{
+  "init_ms": 4611.6,
+  "per_image": [
+    {
+      "image": "testing-assets\\front\\male_001_front.jpg",
+      "resolution": "896x1200",
+      "landmarks_detected": 33,
+      "avg_landmark_visibility": 0.9833,
+      "latency_ms_mean": 46.13,
+      "latency_ms_median": 45.87,
+      "latency_ms_min": 43.53,
+      "latency_ms_max": 49.46,
+      "latency_ms_stdev": 2.03,
+      "raw_samples_ms": [
+        45.13,
+        49.46,
+        44.65,
+        43.84,
+        46.09,
+        47.93,
+        43.53,
+        46.12,
+        45.66,
+        48.86
+      ]
+    },
+    {
+      "image": "testing-assets\\front\\female_001_front.jpg",
+      "resolution": "896x1200",
+      "landmarks_detected": 33,
+      "avg_landmark_visibility": 0.9659,
+      "latency_ms_mean": 47.26,
+      "latency_ms_median": 47.16,
+      "latency_ms_min": 44.86,
+      "latency_ms_max": 51.15,
+      "latency_ms_stdev": 1.82,
+      "raw_samples_ms": [
+        48.32,
+        44.86,
+        48.54,
+        47.64,
+        46.44,
+        45.83,
+        45.45,
+        47.0,
+        47.32,
+        51.15
+      ]
+    },
+    {
+      "image": "testing-assets\\side\\male_001_side.jpg",
+      "resolution": "896x1200",
+      "landmarks_detected": 33,
+      "avg_landmark_visibility": 0.8155,
+      "latency_ms_mean": 48.97,
+      "latency_ms_median": 49.6,
+      "latency_ms_min": 45.73,
+      "latency_ms_max": 51.2,
+      "latency_ms_stdev": 1.88,
+      "raw_samples_ms": [
+        45.73,
+        46.72,
+        50.53,
+        51.2,
+        49.4,
+        50.58,
+        49.79,
+        49.07,
+        49.85,
+        46.8
+      ]
+    },
+    {
+      "image": "testing-assets\\side\\female_001_side.jpg",
+      "resolution": "896x1200",
+      "landmarks_detected": 33,
+      "avg_landmark_visibility": 0.7751,
+      "latency_ms_mean": 47.91,
+      "latency_ms_median": 48.21,
+      "latency_ms_min": 45.39,
+      "latency_ms_max": 50.02,
+      "latency_ms_stdev": 1.45,
+      "raw_samples_ms": [
+        46.73,
+        48.24,
+        48.18,
+        49.52,
+        46.1,
+        48.63,
+        47.99,
+        50.02,
+        48.34,
+        45.39
+      ]
+    }
+  ],
+  "environment": {
+    "platform": "Windows-10-10.0.26200-SP0",
+    "python_version": "3.11.9",
+    "cv2_version": "5.0.0",
+    "mediapipe_version": "1.0.0",
+    "execution_provider": "CPU (mediapipe Python Tasks API has no GPU delegate on Windows)"
+  }
+}

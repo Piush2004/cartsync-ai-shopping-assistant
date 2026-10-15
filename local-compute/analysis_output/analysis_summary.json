@@ -1,0 +1,105 @@
+{
+  "perMeasurementBreakdown": {
+    "shoulderWidth": {
+      "mae": 3.67,
+      "mape": 8.49,
+      "expectedError": 1.0,
+      "calibratedConfidence": 0.014,
+      "qualityLabel": "Poor",
+      "errorSourcesBreakdown": {
+        "pose": 1.833,
+        "depth": 0.0,
+        "scale": 1.1,
+        "visibility": 0.55,
+        "ellipse": 0.0,
+        "quality": 0.183
+      }
+    },
+    "chest": {
+      "mae": 23.33,
+      "mape": 23.25,
+      "expectedError": 2.0,
+      "calibratedConfidence": 0.0,
+      "qualityLabel": "Poor",
+      "errorSourcesBreakdown": {
+        "pose": 2.333,
+        "depth": 9.333,
+        "scale": 4.667,
+        "visibility": 1.167,
+        "ellipse": 4.667,
+        "quality": 1.167
+      }
+    },
+    "waist": {
+      "mae": 9.0,
+      "mape": 12.28,
+      "expectedError": 2.2,
+      "calibratedConfidence": 0.0,
+      "qualityLabel": "Poor",
+      "errorSourcesBreakdown": {
+        "pose": 0.9,
+        "depth": 3.6,
+        "scale": 1.8,
+        "visibility": 0.45,
+        "ellipse": 1.8,
+        "quality": 0.45
+      }
+    },
+    "hips": {
+      "mae": 32.0,
+      "mape": 32.55,
+      "expectedError": 2.5,
+      "calibratedConfidence": 0.0,
+      "qualityLabel": "Poor",
+      "errorSourcesBreakdown": {
+        "pose": 3.2,
+        "depth": 12.8,
+        "scale": 6.4,
+        "visibility": 1.6,
+        "ellipse": 6.4,
+        "quality": 1.6
+      }
+    },
+    "sleeve": {
+      "mae": 3.67,
+      "mape": 6.22,
+      "expectedError": 1.5,
+      "calibratedConfidence": 0.32,
+      "qualityLabel": "Poor",
+      "errorSourcesBreakdown": {
+        "pose": 1.65,
+        "depth": 0.0,
+        "scale": 1.1,
+        "visibility": 0.733,
+        "ellipse": 0.0,
+        "quality": 0.183
+      }
+    },
+    "neck": {
+      "mae": 11.67,
+      "mape": 31.24,
+      "expectedError": 1.2,
+      "calibratedConfidence": 0.0,
+      "qualityLabel": "Poor",
+      "errorSourcesBreakdown": {
+        "pose": 1.167,
+        "depth": 4.083,
+        "scale": 2.333,
+        "visibility": 1.75,
+        "ellipse": 1.75,
+        "quality": 0.583
+      }
+    }
+  },
+  "reliabilityRankings": [
+    "height",
+    "calf",
+    "thigh",
+    "shoulderWidth",
+    "sleeve",
+    "waist",
+    "neck",
+    "chest",
+    "hips"
+  ]
+}

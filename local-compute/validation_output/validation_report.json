@@ -1,0 +1,83 @@
+{
+  "overallAccuracyPercent": 83.16,
+  "globalMetrics": {
+    "mae": 12.333,
+    "rmse": 16.311,
+    "mape": 16.837
+  },
+  "confidenceCorrelation": 0.0,
+  "subjects": [
+    {
+      "subjectId": "subj_001_male_athletic",
+      "gender": "male",
+      "heightCm": 180.0,
+      "predictions": {
+        "shoulderWidth": 41,
+        "chest": 80,
+        "waist": 91,
+        "hips": 66,
+        "inseam": 78,
+        "sleeve": 65,
+        "neck": 27
+      },
+      "groundTruth": {
+        "shoulderWidth": 45,
+        "chest": 102,
+        "waist": 82,
+        "hips": 98,
+        "inseam": 82,
+        "sleeve": 62,
+        "neck": 39
+      },
+      "confidence": 0.0
+    },
+    {
+      "subjectId": "subj_002_female_slender",
+      "gender": "female",
+      "heightCm": 165.0,
+      "predictions": {
+        "shoulderWidth": 35,
+        "chest": 68,
+        "waist": 81,
+        "hips": 62,
+        "inseam": 71,
+        "sleeve": 60,
+        "neck": 22
+      },
+      "groundTruth": {
+        "shoulderWidth": 38,
+        "chest": 88,
+        "waist": 66,
+        "hips": 92,
+        "inseam": 74,
+        "sleeve": 56,
+        "neck": 32
+      },
+      "confidence": 0.0
+    },
+    {
+      "subjectId": "subj_003_male_robust",
+      "gender": "male",
+      "heightCm": 175.0,
+      "predictions": {
+        "shoulderWidth": 42,
+        "chest": 82,
+        "waist": 93,
+        "hips": 71,
+        "inseam": 76,
+        "sleeve": 64,
+        "neck": 28
+      },
+      "groundTruth": {
+        "shoulderWidth": 46,
+        "chest": 110,
+        "waist": 96,
+        "hips": 105,
+        "inseam": 78,
+        "sleeve": 60,
+        "neck": 41
+      },
+      "confidence": 0.0
+    }
+  ]
+}

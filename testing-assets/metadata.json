@@ -1,0 +1,39 @@
+[
+  {
+    "id": "male_001",
+    "gender": "male",
+    "height_group": "170-180",
+    "body_type": "athletic",
+    "clothing": "fitted_tshirt_jeans",
+    "lighting": "excellent_indoor",
+    "background": "white_wall",
+    "front": "front/male_001_front.jpg",
+    "side": "side/male_001_side.jpg",
+    "valid": true
+  },
+  {
+    "id": "female_001",
+    "gender": "female",
+    "height_group": "155-165",
+    "body_type": "curvy",
+    "clothing": "fitted_tank_leggings",
+    "lighting": "soft_daylight",
+    "background": "living_room",
+    "front": "front/female_001_front.jpg",
+    "side": "side/female_001_side.jpg",
+    "valid": true
+  },
+  {
+    "id": "invalid_001",
+    "gender": "unknown",
+    "height_group": "unknown",
+    "body_type": "unknown",
+    "clothing": "baggy_oversized",
+    "lighting": "poor",
+    "background": "cluttered_bedroom",
+    "front": "invalid/invalid_001_mirror.jpg",
+    "side": null,
+    "valid": false,
+    "failure_reason": "mirror_selfie_baggy_clothing"
+  }
+]

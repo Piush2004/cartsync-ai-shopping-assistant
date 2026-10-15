@@ -1,0 +1,25 @@
+brand: Levis
+region: Global
+gender: Men
+category: Jeans
+version: "2026"
+decision:
+  primary:
+    - waist_circumference
+  secondary:
+    - inseam
+  minimum_required:
+    - waist_circumference
+sizes:
+  - size: "30x30"
+    waist_circumference: [76, 78.5]
+    inseam: [76, 77.5]
+  - size: "32x30"
+    waist_circumference: [81, 83.5]
+    inseam: [76, 77.5]
+  - size: "32x32"
+    waist_circumference: [81, 83.5]
+    inseam: [81, 82.5]
+  - size: "34x32"
+    waist_circumference: [86, 88.5]
+    inseam: [81, 82.5]

@@ -1,0 +1,6 @@
+# Downloaded model weights -- re-downloaded on demand by scripts/, never committed.
+models/*.task
+models/*.onnx
+models/*.pth
+models/*.pt
+models/*.tflite

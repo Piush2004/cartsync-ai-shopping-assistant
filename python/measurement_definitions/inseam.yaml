@@ -1,0 +1,10 @@
+measurement: inseam
+category: skeletal
+required_landmarks:
+  - left_hip
+  - left_ankle
+required_regions:
+  - lowerBody
+minimum_quality: 0.85
+formula: vertical_distance
+estimated: false

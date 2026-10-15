@@ -1,0 +1,1 @@
+{"version":3,"file":"firestore.service.js","sourceRoot":"","sources":["../../src/services/firestore.service.ts"],"names":[],"mappings":";;;AAAA,iDAA6C;AAE7C,MAAa,gBAAoB,SAAQ,0BAAc;IACrD,4EAA4E;IAC5E,0DAA0D;IAC1D,YAAY,cAAsB;QAChC,KAAK,CAAC,cAAc,CAAC,CAAC;IACxB,CAAC;CACF;AAND,4CAMC"}

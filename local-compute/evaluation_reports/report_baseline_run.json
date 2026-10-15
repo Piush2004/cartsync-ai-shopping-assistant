@@ -1,0 +1,35 @@
+{
+  "experimentId": "exp-e794174bed70",
+  "timestamp": "2026-07-01T06:40:05Z",
+  "component": "MeasurementEngine",
+  "modelVersions": {
+    "activeModel": "MeasurementEngine",
+    "version": "2.1.3",
+    "systemRegistry": {
+      "MeasurementEngine": "2.1.3",
+      "CalibrationEngine": "2.4.2",
+      "SMPLProvider": "1.2.0",
+      "RecommendationEngine": "22.1.0",
+      "VtonProvider": "1.0.0",
+      "LLMProvider": "3.0.0"
+    }
+  },
+  "dataset": "test_dataset_v1.json",
+  "hardware": {
+    "os": "Windows",
+    "cpu": "AMD64 Family 25 Model 117 Stepping 2, AuthenticAMD",
+    "gpu": "N/A",
+    "vram": "0.0 GB",
+    "ram": "24.0 GB",
+    "cudaEnabled": false,
+    "pytorchVersion": "N/A"
+  },
+  "metrics": {
+    "RMSE": 0.45,
+    "MAPE": 1.25
+  },
+  "execution": {
+    "inferenceTimeMs": 242.67,
+    "peakMemoryUsageMb": 142.5
+  }
+}

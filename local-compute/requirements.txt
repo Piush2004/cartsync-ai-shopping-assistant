@@ -1,0 +1,17 @@
+# Phase 4 (infrastructure only) -- deliberately minimal. No torch, no
+# onnxruntime-gpu, no xformers, no model runtimes: nothing here loads a real
+# model yet (see workers/worker_registry.py's WorkerNotImplementedError).
+# The old, torch-heavy requirements.txt still applies to
+# local-compute/_archive_v1_firebase_infra and the rest of the ml/avatar/depth
+# trees this phase doesn't touch.
+fastapi>=0.115,<1.0
+uvicorn>=0.30,<1.0
+httpx>=0.27,<1.0
+psutil>=6.0,<7.0
+pydantic>=2.9,<3.0
+pydantic-settings>=2.5,<3.0
+python-dotenv>=1.0,<2.0
+
+# Test-only.
+pytest>=8.0,<9.0
+pytest-mock>=3.14,<4.0

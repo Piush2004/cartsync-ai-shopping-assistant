@@ -1,0 +1,14 @@
+{
+  "rf_chest_v1": {
+    "modelName": "rf_chest",
+    "version": 1,
+    "filename": "rf_chest_v1.pkl",
+    "path": "D:\\Projects\\AI Shoping Assistant\\local-compute\\experiments\\models\\rf_chest_v1.pkl"
+  },
+  "xgb_chest_v1": {
+    "modelName": "xgb_chest",
+    "version": 1,
+    "filename": "xgb_chest_v1.pkl",
+    "path": "D:\\Projects\\AI Shoping Assistant\\local-compute\\experiments\\models\\xgb_chest_v1.pkl"
+  }
+}

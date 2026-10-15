@@ -1,0 +1,62 @@
+{
+  "timestamp": "2026-07-02T10:13:56Z",
+  "resources": {
+    "hasCuda": false,
+    "deviceName": "CPU",
+    "vramMb": 0.0,
+    "ramGb": 23.31
+  },
+  "checkpointsAudit": {
+    "vits": {
+      "onnx": {
+        "exists": false,
+        "path": "D:\\Projects\\AI Shoping Assistant\\local-compute\\models\\depth\\depth_anything_v2_vits.onnx",
+        "sha256": "",
+        "sizeMb": 0.0
+      },
+      "torch": {
+        "exists": false,
+        "path": "D:\\Projects\\AI Shoping Assistant\\local-compute\\models\\depth\\depth_anything_v2_vits.pth",
+        "sha256": "",
+        "sizeMb": 0.0
+      }
+    },
+    "vitb": {
+      "onnx": {
+        "exists": false,
+        "path": "D:\\Projects\\AI Shoping Assistant\\local-compute\\models\\depth\\depth_anything_v2_vitb.onnx",
+        "sha256": "",
+        "sizeMb": 0.0
+      },
+      "torch": {
+        "exists": false,
+        "path": "D:\\Projects\\AI Shoping Assistant\\local-compute\\models\\depth\\depth_anything_v2_vitb.pth",
+        "sha256": "",
+        "sizeMb": 0.0
+      }
+    },
+    "vitl": {
+      "onnx": {
+        "exists": false,
+        "path": "D:\\Projects\\AI Shoping Assistant\\local-compute\\models\\depth\\depth_anything_v2_vitl.onnx",
+        "sha256": "",
+        "sizeMb": 0.0
+      },
+      "torch": {
+        "exists": false,
+        "path": "D:\\Projects\\AI Shoping Assistant\\local-compute\\models\\depth\\depth_anything_v2_vitl.pth",
+        "sha256": "",
+        "sizeMb": 0.0
+      }
+    }
+  },
+  "benchmark": {
+    "status": "SUCCESS",
+    "loadTimeMs": 4.69,
+    "inferenceLatencyMs": 31.27,
+    "vramUsageMb": 0.0,
+    "backend": "MockEmulator",
+    "device": "CPU",
+    "outputDepthResolution": "640x480"
+  }
+}
