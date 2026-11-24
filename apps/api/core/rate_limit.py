@@ -10,14 +10,14 @@ processes/instances, swap `storage_uri` below for a Redis URL; the
 Limits are keyed by authenticated user ID when a valid-looking bearer token
 is present (so one user can't starve another user's quota), and fall back to
 client IP for unauthenticated requests (login/register, or a request with no/
-garbage token). Reading the token here is unverified-claims only -- it is
-used purely to partition the rate-limit bucket, never to authorize the
-request -- so a forged token can't grant extra quota, it can at worst fall
-back to the (still-enforced) IP-based bucket.
+garbage token). The token's signature is verified before it picks a bucket, so a
+forged or expired token just falls back to the IP-based bucket.
 """
 import ipaddress
 
 from jose import jwt
+
+from core.config import settings
 from slowapi import Limiter
 from slowapi.util import get_remote_address
 from starlette.requests import Request
@@ -57,7 +57,9 @@ def rate_limit_key(request: Request) -> str:
     if auth_header.startswith("Bearer "):
         token = auth_header[len("Bearer "):]
         try:
-            claims = jwt.get_unverified_claims(token)
+            # Signature is checked so a made-up token cannot pick another
+            # user's bucket or dodge the per-IP limit on login/register.
+            claims = jwt.decode(token, settings.SECRET_KEY, algorithms=[settings.ALGORITHM])
             sub = claims.get("sub")
             if sub:
                 return f"user:{sub}"

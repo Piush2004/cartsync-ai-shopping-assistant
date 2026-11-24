@@ -59,6 +59,16 @@ def test_no_header_behind_loopback_uses_loopback():
 def test_a_signed_in_user_is_still_keyed_by_user_not_address():
     from jose import jwt
 
-    token = jwt.encode({"sub": "user-42"}, "irrelevant", algorithm="HS256")
+    from core.config import settings
+
+    token = jwt.encode({"sub": "user-42"}, settings.SECRET_KEY, algorithm=settings.ALGORITHM)
     req = make_request("127.0.0.1", {"Authorization": f"Bearer {token}", "CF-Connecting-IP": "198.51.100.7"})
     assert rate_limit_key(req) == "user:user-42"
+
+
+def test_a_forged_token_falls_back_to_the_address():
+    from jose import jwt
+
+    token = jwt.encode({"sub": "user-42"}, "not-the-real-secret", algorithm="HS256")
+    req = make_request("127.0.0.1", {"Authorization": f"Bearer {token}", "CF-Connecting-IP": "198.51.100.7"})
+    assert rate_limit_key(req) == "ip:198.51.100.7"

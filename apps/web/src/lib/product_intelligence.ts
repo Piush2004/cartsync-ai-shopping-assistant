@@ -1,8 +1,8 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+import { API_BASE_URL } from "./client";
 
 export const productIntelligenceApi = {
   async getRecommendations(token: string) {
-    const response = await fetch(`${API_URL}/api/v1/product-intelligence/recommendations`, {
+    const response = await fetch(`${API_BASE_URL}/product-intelligence/recommendations`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

@@ -233,8 +233,25 @@ def test_a_key_google_just_rotated_in_is_found(auth_client, monkeypatch):
     monkeypatch.setattr(google_auth, "_fetch_keys", fetch)
     google_auth.clear_key_cache()
     sign_in(auth_client, make_token(sub="1", email="a@gmail.com"))  # primes the cache
+    google_auth._cache["fetched_at"] -= 120  # the cached copy is now older than the refresh limit
     resp = sign_in(auth_client, make_token(sub="2", email="b@gmail.com", key=new_private, kid="google-key-2"))
     assert resp.status_code == 200
+
+
+def test_an_unknown_key_id_does_not_refetch_keys_again_and_again(auth_client, monkeypatch):
+    calls = {"n": 0}
+
+    def fetch():
+        calls["n"] += 1
+        return [GOOGLE_JWK]
+
+    monkeypatch.setattr(google_auth, "_fetch_keys", fetch)
+    google_auth.clear_key_cache()
+    other_private, _ = _make_key("made-up")
+    for i in range(5):
+        resp = sign_in(auth_client, make_token(sub=str(i), email=f"x{i}@gmail.com", key=other_private, kid=f"made-up-{i}"))
+        assert resp.status_code == 401
+    assert calls["n"] == 1
 
 
 def test_the_keys_are_cached_between_sign_ins(auth_client, monkeypatch):

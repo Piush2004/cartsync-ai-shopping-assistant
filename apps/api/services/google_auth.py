@@ -22,6 +22,10 @@ from jose import JWTError, jwt
 GOOGLE_CERTS_URL = "https://www.googleapis.com/oauth2/v3/certs"
 VALID_ISSUERS = {"https://accounts.google.com", "accounts.google.com"}
 KEY_CACHE_SECONDS = 60 * 60
+# A forced refresh (unknown key id) may run at most this often, so a stream of
+# made-up key ids cannot make this server call Google over and over.
+FORCED_REFRESH_MIN_SECONDS = 60
+MAX_KID_LENGTH = 128
 
 
 class GoogleAuthError(Exception):
@@ -59,7 +63,8 @@ def _fetch_keys() -> List[Dict[str, Any]]:
 def _keys(force_refresh: bool = False) -> List[Dict[str, Any]]:
     with _lock:
         fresh = _cache["keys"] is not None and time.time() - _cache["fetched_at"] < KEY_CACHE_SECONDS
-        if force_refresh or not fresh:
+        recently_fetched = time.time() - _cache["fetched_at"] < FORCED_REFRESH_MIN_SECONDS
+        if (force_refresh and not recently_fetched) or not fresh:
             _cache["keys"] = _fetch_keys()
             _cache["fetched_at"] = time.time()
         return _cache["keys"]
@@ -92,7 +97,7 @@ def verify_google_id_token(token: str, audiences: List[str]) -> GoogleIdentity:
     if header.get("alg") != "RS256":
         raise GoogleAuthError("Unexpected token type")
     kid = header.get("kid")
-    if not kid:
+    if not kid or not isinstance(kid, str) or len(kid) > MAX_KID_LENGTH:
         raise GoogleAuthError("Token has no key id")
 
     key = _find_key(kid)
