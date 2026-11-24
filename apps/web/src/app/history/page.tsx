@@ -73,8 +73,8 @@ export default function HistoryPage() {
   const chestRange = maxChest - minChest || 1;
 
   return (
-    <div className="min-h-screen bg-bg-primary pt-24 pb-12 px-6">
-      <div className="max-w-5xl mx-auto">
+    <div className="bg-bg-primary pb-12">
+      <div className="w-full">
         <motion.div 
           initial="hidden"
           animate="visible"
@@ -110,8 +110,8 @@ export default function HistoryPage() {
                <Loader2 className="w-8 h-8 text-accent-blue animate-spin" />
             </div>
           ) : (
-            <motion.div variants={fadeInUp} className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              <div className="lg:col-span-2">
+            <motion.div variants={fadeInUp} className="grid grid-cols-1 xl:grid-cols-[minmax(0,1fr)_420px] gap-8">
+              <div className="min-w-0">
                 <Card className="p-8">
                   <h2 className="text-xl font-bold text-text-primary mb-8">Timeline</h2>
                   <div className="relative pl-4">

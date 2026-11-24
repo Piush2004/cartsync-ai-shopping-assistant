@@ -1,13 +1,23 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Bricolage_Grotesque, Atkinson_Hyperlegible } from "next/font/google";
 import "./globals.css";
 import { GrainOverlay } from "@/components/effects/GrainOverlay";
 import { AnalyticsProvider } from "@/lib/analytics/provider";
 import { Toaster } from "sonner";
 
-const inter = Inter({
+// Headlines: Bricolage Grotesque. Everything else: Atkinson Hyperlegible,
+// drawn for legibility on small screens -- this app is used on phones, in
+// shops, by people who are not reading a spec sheet.
+const headline = Bricolage_Grotesque({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-headline",
+  display: "swap",
+});
+
+const body = Atkinson_Hyperlegible({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-body",
   display: "swap",
 });
 
@@ -28,7 +38,7 @@ export const metadata: Metadata = {
         alt: "CartSync Dashboard",
       },
     ],
-    locale: "en_US",
+    locale: "en_IN",
     type: "website",
   },
   twitter: {
@@ -43,7 +53,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${inter.variable}`}>
+    <html lang="en" className={`${headline.variable} ${body.variable}`}>
       <body className="min-h-screen bg-bg-primary text-text-primary font-sans antialiased">
         <AnalyticsProvider>
           <script

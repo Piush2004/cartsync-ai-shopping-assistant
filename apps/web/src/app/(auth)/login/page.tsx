@@ -12,10 +12,14 @@ import { useState } from 'react';
 export default function LoginPage() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  // React 19 empties a <form action> when the action finishes, so a wrong
+  // password used to wipe the email too. Remember it and put it back.
+  const [email, setEmail] = useState('');
 
   const handleSubmit = async (formData: FormData) => {
     setLoading(true);
     setError('');
+    setEmail(String(formData.get('email') ?? ''));
     const res = await loginAction(formData);
     if (res?.error) {
       setError(res.error);
@@ -49,6 +53,7 @@ export default function LoginPage() {
             type="email"
             label="Email address"
             icon={<Mail className="w-5 h-5" />}
+            defaultValue={email}
             required
             placeholder="you@example.com"
           />

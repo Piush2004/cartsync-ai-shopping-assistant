@@ -10,6 +10,14 @@ import uuid
 
 router = APIRouter()
 
+def _first_present(raw: dict, *names: str):
+    """The first of `names` the client sent (not None), else None."""
+    for name in names:
+        if raw.get(name) is not None:
+            return raw.get(name)
+    return None
+
+
 @router.post("/extract", response_model=EffectiveMeasurementResponse)
 @limiter.limit("10/minute")
 def extract_measurements(
@@ -50,9 +58,11 @@ def extract_measurements(
         user_id=current_user.id,
         chest_circumference=raw.get("chest"),
         waist_circumference=raw.get("waist"),
-        hip_circumference=raw.get("hip"),
+        # "hips"/"shoulders" are accepted too: the website's manual form used to
+        # send those names and a tab with the old page open still does.
+        hip_circumference=_first_present(raw, "hip", "hips"),
         inseam=raw.get("inseam"),
-        shoulder_width=raw.get("shoulder"),
+        shoulder_width=_first_present(raw, "shoulder", "shoulders"),
         arm_length=raw.get("arm_length"),
         torso_length=raw.get("torso_length"),
         confidence_score=confidence_score,

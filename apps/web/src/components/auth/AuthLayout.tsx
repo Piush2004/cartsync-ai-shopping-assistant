@@ -66,7 +66,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
             "CartSync finally solved the problem of buying clothes online. It's like having a tailor who knows every brand's sizing chart by heart."
           </p>
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-gradient-accent p-[1px]">
+            <div className="w-8 h-8 rounded-full silk-accent p-[1px]">
               <div className="w-full h-full bg-bg-primary rounded-full flex items-center justify-center">
                 <span className="text-[10px] font-bold">SJ</span>
               </div>

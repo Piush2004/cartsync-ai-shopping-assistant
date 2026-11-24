@@ -153,8 +153,9 @@ export default function LandingPage() {
                   </div>
                 </motion.div>
                 
-                {/* Background Grid Pattern */}
-                <div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-20 mix-blend-overlay pointer-events-none" />
+                {/* (A noise texture overlay pointed at /images/noise.png, a file that
+                    was never added, so it drew nothing and logged a 404 on every
+                    page load. Removed; the gradient below is what actually shows.) */}
                 <div className="absolute inset-0 bg-gradient-to-br from-accent-blue/5 via-transparent to-accent-purple/5 pointer-events-none" />
               </div>
             </div>

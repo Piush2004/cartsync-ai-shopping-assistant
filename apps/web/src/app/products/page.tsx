@@ -4,17 +4,15 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { staggerContainer, fadeInUp } from "@/lib/motion";
 import { ProductCard } from "@/components/dashboard/ProductCard";
-import { Button } from "@/components/ui/Button";
-import { Sparkles, SlidersHorizontal, Search, Loader2 } from "lucide-react";
+import { Sparkles, Search, Loader2 } from "lucide-react";
 import { getToken } from "@/app/actions/auth";
 import { apiClient } from "@/lib/client";
-
-const CATEGORIES = ["All", "T-Shirts", "Pants", "Outerwear", "Footwear"];
 
 export default function ProductsPage() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [products, setProducts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
     async function loadProducts() {
@@ -36,13 +34,19 @@ export default function ProductsPage() {
     loadProducts();
   }, []);
 
-  const filteredProducts = activeCategory === "All" 
-    ? products 
-    : products.filter(p => p.product.category === activeCategory.toLowerCase());
+  // Categories come from the products themselves, so a newly imported
+  // "Hoodie" or "Jacket" gets its own chip without a code change.
+  const categories = ["All", ...Array.from(new Set(products.map((p) => p.product.category as string))).sort()];
+  const needle = query.trim().toLowerCase();
+  const filteredProducts = products.filter((p) => {
+    if (activeCategory !== "All" && p.product.category !== activeCategory) return false;
+    if (!needle) return true;
+    return `${p.product.name} ${p.product.brand}`.toLowerCase().includes(needle);
+  });
 
   return (
-    <div className="min-h-screen bg-bg-primary pt-24 pb-12 px-6">
-      <div className="max-w-7xl mx-auto">
+    <div className="bg-bg-primary pb-12">
+      <div className="w-full">
         <motion.div 
           initial="hidden"
           animate="visible"
@@ -60,23 +64,22 @@ export default function ProductsPage() {
             </motion.div>
             
             <motion.div variants={fadeInUp} className="flex gap-3">
-              <div className="relative w-64">
+              <div className="relative w-full md:w-80">
                 <Search className="w-4 h-4 absolute left-4 top-1/2 -translate-y-1/2 text-text-muted" />
                 <input 
-                  type="text" 
-                  placeholder="Search products..." 
+                  type="search" 
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  aria-label="Search products"
+                  placeholder="Search name or brand" 
                   className="w-full h-11 pl-11 pr-4 bg-bg-elevated border border-border rounded-xl text-sm focus:outline-none focus:border-accent-blue focus:ring-1 focus:ring-accent-blue transition-all"
                 />
               </div>
-              <Button variant="secondary" className="h-11 px-4">
-                <SlidersHorizontal className="w-4 h-4 mr-2" />
-                Filters
-              </Button>
             </motion.div>
           </div>
 
           <motion.div variants={fadeInUp} className="flex flex-wrap gap-2 mb-8">
-            {CATEGORIES.map(category => (
+            {categories.map(category => (
               <button
                 key={category}
                 onClick={() => setActiveCategory(category)}
@@ -96,16 +99,16 @@ export default function ProductsPage() {
                <Loader2 className="w-8 h-8 text-accent-blue animate-spin" />
             </div>
           ) : (
-            <motion.div variants={fadeInUp} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <motion.div variants={fadeInUp} className="grid grid-cols-[repeat(auto-fill,minmax(270px,1fr))] gap-6 2xl:gap-8">
               {filteredProducts.map((product, idx) => (
-                <div key={idx} className="w-full flex justify-center">
+                <div key={idx} className="min-w-0">
                   <ProductCard product={product} />
                 </div>
               ))}
               
               {filteredProducts.length === 0 && (
                 <div className="col-span-full text-center py-20">
-                  <p className="text-text-secondary text-lg">No products found matching your profile in this category.</p>
+                  <p className="text-text-secondary text-lg">No products match. Try another category or clear the search.</p>
                 </div>
               )}
             </motion.div>

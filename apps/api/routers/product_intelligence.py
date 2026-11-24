@@ -23,11 +23,16 @@ def get_product_recommendations(
     if not measurements:
         raise HTTPException(status_code=400, detail="Missing effective measurements")
 
-    preferences_records = db.query(UserPreference).filter(UserPreference.user_id == current_user.id).all()
-    preferences = {p.category: p.value for p in preferences_records}
+    # UserPreference has a single `fit_preference` column and BrandAffinity has
+    # `brand_id` (lowercase, e.g. "zara"). This used to read p.category / p.value
+    # / b.brand_name, none of which exist, so the whole list returned a 500 for
+    # anyone who had saved a fit preference or a favourite brand. (The chat
+    # router had the same bug and was fixed; this one was missed.)
+    pref_row = db.query(UserPreference).filter(UserPreference.user_id == current_user.id).first()
+    preferences = {"fit_preference": pref_row.fit_preference} if pref_row and pref_row.fit_preference else {}
 
     brand_affinity_records = db.query(BrandAffinity).filter(BrandAffinity.user_id == current_user.id).all()
-    brand_affinity = [b.brand_name for b in brand_affinity_records if b.affinity_score > 0.5]
+    brand_affinity = [b.brand_id for b in brand_affinity_records if (b.affinity_score or 0) > 0.5]
 
     # 2. Call Stylist for base sizing logic (we assume a generic brand for a baseline size)
     # In a real scenario, the stylist might compute a size per product, but here we do it broadly.

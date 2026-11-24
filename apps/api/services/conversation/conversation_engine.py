@@ -13,7 +13,8 @@ class ConversationEngine:
         history: List[Message],
         user_profile: Dict[str, Any],
         get_stylist_rec=None, 
-        get_product_rec=None
+        get_product_rec=None,
+        llm=None,
     ) -> ConversationResponse:
         
         # 1. Intent Detection
@@ -31,6 +32,13 @@ class ConversationEngine:
             
         if "ProductIntelligenceEngine" in routes and get_product_rec:
             product_data = get_product_rec()
+
+        # The shopper's size is needed to answer almost anything ("I want
+        # oversized clothes", "what is my chest?"). It used to be fetched only
+        # for sizing/product/brand questions, so the model got "Size: N/A" for
+        # the rest and told people with saved measurements to add them.
+        if stylist_data is None and get_stylist_rec:
+            stylist_data = get_stylist_rec()
             
         # 3. Context Builder
         context = ContextBuilder.build(
@@ -44,9 +52,8 @@ class ConversationEngine:
         # 4. Prompt Builder
         prompt = PromptBuilder.build_prompt(context, question)
         
-        # 5. LLM (Mocked for now)
-        # In production, this would call OpenAI or Gemini with the `prompt`.
-        # Here we simulate the LLM's natural language response based on the structured data it receives.
+        # 5. Rules-based answer. Always computed: it is what the user gets
+        # when no language model is reachable.
         if intent.category == "product" and product_data:
             top_prod = product_data[0]
             answer = f"Based on your measurements and preference for {user_profile.get('preferred_fit', 'your fit')}, I'd recommend the {top_prod['name']}. It has a {top_prod['score']}% fit score."
@@ -55,5 +62,17 @@ class ConversationEngine:
         else:
             answer = f"I understand you're asking about {intent.category}. I've checked your profile and preferences to help guide you."
             
-        # 6. Response Formatter
-        return ResponseFormatter.format(raw_llm_response=answer, intent=intent, sources=routes)
+        # 6. Let the language model word the answer when one is available.
+        # `answer` above stays as the fallback: `llm` returns None whenever
+        # the model can't be reached, and the chat still has to answer.
+        answered_by = "rules"
+        if llm is not None:
+            model_answer = llm(prompt)
+            if model_answer:
+                answer = model_answer
+                answered_by = "model"
+
+        # 7. Response Formatter
+        response = ResponseFormatter.format(raw_llm_response=answer, intent=intent, sources=routes)
+        response.answered_by = answered_by
+        return response

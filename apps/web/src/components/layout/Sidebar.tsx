@@ -28,10 +28,9 @@ const items = [
   { href: "/history", icon: Clock, label: "History" },
 ];
 
-const bottomItems = [
-  { href: "/settings", icon: Settings, label: "Settings" },
-  { href: "/profile", icon: User, label: "Profile" },
-];
+// No Settings or Profile entries: those pages don't exist yet, and a link
+// that lands on a 404 is worse than no link.
+const bottomItems: typeof items = [];
 
 export function Sidebar() {
   const pathname = usePathname();
@@ -218,7 +217,7 @@ export function Sidebar() {
 
       {/* Mobile Bottom Nav */}
       <div className="md:hidden fixed bottom-0 left-0 w-full h-16 bg-bg-secondary/80 backdrop-blur-md border-t border-border z-50 flex items-center justify-around px-2">
-        {[items[0], items[1], items[2], items[3], bottomItems[1]].map((item) => {
+        {[items[0], items[1], items[4], items[2], items[5]].map((item) => {
           const isActive = pathname.startsWith(item.href);
           const Icon = item.icon;
           return (

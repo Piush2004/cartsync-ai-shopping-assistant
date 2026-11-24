@@ -1,39 +1,39 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
 @theme inline {
   /* ── Color Palette ── */
-  --color-bg-primary: #FAFAFA;
-  --color-bg-secondary: #F5F5F7;
+  --color-bg-primary: #F5F7F4;
+  --color-bg-secondary: #EBF0EA;
   --color-bg-card: #FFFFFF;
   --color-bg-elevated: #FFFFFF;
-  --color-bg-hover: #F3F4F6;
+  --color-bg-hover: #EDF1EC;
 
-  --color-border: #E5E7EB;
-  --color-border-hover: #D1D5DB;
-  --color-border-active: #9CA3AF;
+  --color-border: #D9DFD6;
+  --color-border-hover: #C3CBC0;
+  --color-border-active: #9AA597;
 
-  --color-text-primary: #111827;
-  --color-text-secondary: #6B7280;
-  --color-text-tertiary: #9CA3AF;
-  --color-text-muted: #D1D5DB;
+  --color-text-primary: #1B1F3B;
+  --color-text-secondary: #4A5070;
+  --color-text-tertiary: #6E7391;
+  --color-text-muted: #8C91AB;
 
-  --color-accent-blue: #2563EB;
-  --color-accent-purple: #7C3AED;
+  --color-accent-blue: #232B6B;
+  --color-accent-purple: #3B3F8F;
   --color-accent-cyan: #06B6D4;
   --color-accent-teal: #14B8A6;
   --color-accent-emerald: #10B981;
-  --color-accent-amber: #F59E0B;
-  --color-accent-rose: #F43F5E;
+  --color-accent-amber: #F4C20D;
+  --color-accent-rose: #D7263D;
 
   /* ── Gradients ── */
-  --gradient-accent: linear-gradient(135deg, #2563EB, #7C3AED);
+  --gradient-accent: linear-gradient(135deg, #232B6B, #3B3F8F);
   --gradient-card: linear-gradient(145deg, rgba(255,255,255,1), rgba(249,250,251,0.5));
-  --gradient-glow: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(37,99,235,0.04), transparent 40%);
-  --gradient-hero-mesh: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(37,99,235,0.1), transparent);
+  --gradient-glow: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(35,43,107,0.04), transparent 40%);
+  --gradient-hero-mesh: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(35,43,107,0.08), transparent);
 
   /* ── Typography ── */
-  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-headline), var(--font-body), ui-sans-serif, system-ui, sans-serif;
 
   /* ── Spacing (8-point grid) ── */
   --space-1: 4px;
@@ -74,11 +74,11 @@
 /* ── Base Styles ── */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #E5E7EB #FAFAFA;
+  scrollbar-color: #D9DFD6 #F5F7F4;
 }
 
 html {
-  background: #FAFAFA;
+  background: #F5F7F4;
   color-scheme: light;
 }
 
@@ -90,10 +90,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+h1, h2, h3 {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+
 /* ── Selection ── */
 ::selection {
-  background: rgba(37, 99, 235, 0.2);
-  color: #111827;
+  background: rgba(244, 194, 13, 0.45);
+  color: #1B1F3B;
 }
 
 /* ── Focus Ring ── */
@@ -265,4 +270,94 @@ html {
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* ── Hang tag: swings once when it appears, answering the new result ── */
+@keyframes tag-swing {
+  0% { transform: rotate(-9deg); }
+  35% { transform: rotate(6deg); }
+  65% { transform: rotate(-3deg); }
+  100% { transform: rotate(0deg); }
+}
+.tag-swing {
+  transform-origin: 50% 2%;
+  animation: tag-swing 1.1s ease-out 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .tag-swing { animation: none; }
+}
+
+/* -- Wardrobe rail: garment tags hanging from a bar -- */
+.rail { position: relative; padding-top: 6px; }
+.rail-bar {
+  position: absolute; top: 0; left: 0; right: 0; height: 6px;
+  border-radius: 3px; background: var(--color-accent-blue);
+}
+/* Tags share the whole rail: 1 per row on a phone, 3 across on a desktop. */
+.rail-list {
+  display: grid; gap: 28px; padding: 0 12px; list-style: none; margin: 0;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+}
+.rail-item {
+  position: relative; padding-top: 30px; min-width: 0;
+  transform-origin: 50% 0;
+}
+.rail-string {
+  position: absolute; top: 0; left: 50%; width: 2px; height: 44px;
+  margin-left: -1px; background: var(--color-accent-blue);
+}
+.rail-tag {
+  position: relative; display: block; min-height: 168px;
+  padding: 44px 20px 22px; color: var(--color-text-primary);
+  background: var(--color-bg-card);
+  border: 2px solid var(--color-accent-blue);
+  border-radius: 28px 28px 14px 14px;
+  box-shadow: 4px 5px 0 rgba(35, 43, 107, 0.14);
+  transition: box-shadow 160ms ease, translate 160ms ease;
+}
+.rail-tag-primary { background: var(--color-accent-amber); }
+.rail-hole {
+  position: absolute; top: 12px; left: 50%; width: 14px; height: 14px;
+  margin-left: -7px; border-radius: 50%;
+  background: var(--color-bg-primary); border: 2px solid var(--color-accent-blue);
+}
+.rail-item:hover, .rail-item:focus-within { animation: tag-swing 0.9s ease-out 1; }
+.rail-tag:hover, .rail-tag:focus-visible {
+  box-shadow: 7px 9px 0 rgba(35, 43, 107, 0.2); translate: 0 -1px;
+}
+.rail-tag:focus-visible { outline: 3px solid var(--color-accent-blue); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) {
+  .rail-item:hover, .rail-item:focus-within { animation: none; }
+}
+
+/* -- Shot silk: gradients that change colour as they drift -- */
+/* Shot silk is woven from two thread colours, so it shifts hue as it moves.
+   Two layers use it: a pale wash behind every page, and a deep version on
+   the things you press. Both stop moving for people who ask for less motion. */
+@keyframes silk-drift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+body {
+  background-image: linear-gradient(120deg, #FBF0D6, #F7DDE6, #E0DEF8, #D6EFE8, #FBF0D6);
+  background-size: 320% 320%;
+  background-attachment: fixed;
+  animation: silk-drift 28s ease-in-out infinite;
+}
+/* Deep silk: dark enough at every stop for white text. */
+.silk-accent {
+  background-image: linear-gradient(110deg, #232B6B, #5B2A86, #A12568, #1F6F78, #232B6B);
+  background-size: 300% 300%;
+  animation: silk-drift 14s ease-in-out infinite;
+}
+.rail-bar { background-image: linear-gradient(110deg, #232B6B, #5B2A86, #A12568, #1F6F78, #232B6B); background-size: 300% 300%; animation: silk-drift 14s ease-in-out infinite; }
+/* Light silk for the main tag: pale enough at every stop for indigo text. */
+.rail-tag-primary {
+  background-image: linear-gradient(110deg, #F4C20D, #F9A26C, #F7A8C4, #F4C20D);
+  background-size: 300% 300%;
+  animation: silk-drift 12s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  body, .silk-accent, .rail-bar, .rail-tag-primary { animation: none; }
 }

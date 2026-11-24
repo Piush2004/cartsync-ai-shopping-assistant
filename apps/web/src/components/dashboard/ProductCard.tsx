@@ -15,7 +15,7 @@ export function ProductCard({ product }: ProductCardProps) {
   const { product: info, fit_score, recommended_size, reason } = product;
 
   return (
-    <TiltCard className="w-[340px] shrink-0">
+    <TiltCard className="w-full min-w-0">
       <GlowCard className="flex flex-col p-0 overflow-hidden group border-border hover:border-accent-blue/30 transition-all h-full relative">
         {/* Image Area with Parallax */}
         <div className="h-56 bg-gradient-to-br from-bg-elevated to-bg-secondary flex items-center justify-center relative overflow-hidden">

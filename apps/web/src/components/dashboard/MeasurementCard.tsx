@@ -66,9 +66,9 @@ export function MeasurementCard({ label, value, unit = "cm", confidence, trend =
         </div>
 
         <div className="mt-auto relative z-10">
-          <div className="flex justify-between items-center mb-1.5">
+          <div className="flex justify-between items-center gap-2 mb-1.5">
             <span className="text-xs text-text-muted">Confidence</span>
-            <span className="text-xs font-semibold text-text-primary">{Math.round(confidence)}%</span>
+            <span className="text-xs font-semibold text-text-primary whitespace-nowrap">{Math.round(confidence)}%</span>
           </div>
           <div className="w-full h-1 bg-bg-elevated rounded-full overflow-hidden relative">
             <motion.div 

@@ -21,3 +21,6 @@ class ConversationResponse(BaseModel):
     sources: List[str]
     confidence: float
     intent_detected: str
+    # "model" when the local language model worded the answer, "rules" when
+    # the built-in fallback did. Shown to the user so they know which.
+    answered_by: str = "rules"

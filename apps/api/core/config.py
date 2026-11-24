@@ -3,7 +3,7 @@ import secrets
 from pathlib import Path
 
 from pydantic import Field
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 logger = logging.getLogger("cartsync")
 
@@ -70,6 +70,15 @@ def _get_or_create_dev_worker_api_key() -> str:
 
 
 class Settings(BaseSettings):
+    # Real environment variables win. Otherwise values come from apps/api/.env
+    # (gitignored), which is where local secrets such as GOOGLE_CLIENT_IDS and
+    # FAL_API_KEY can live. Unknown names in the file are ignored.
+    model_config = SettingsConfigDict(
+        env_file=Path(__file__).resolve().parent.parent / ".env",
+        env_file_encoding="utf-8",
+        extra="ignore",
+    )
+
     PROJECT_NAME: str = "CartSync AI"
     VERSION: str = "1.0.0"
     API_V1_STR: str = "/api/v1"
@@ -100,6 +109,26 @@ class Settings(BaseSettings):
     # API, so an empty value just means try-on requests fail with a clear
     # "not configured" error until a real key is set.
     FAL_API_KEY: str = ""
+
+    # Local language model for the stylist chat, served by Ollama on this
+    # machine. The model only words the answer -- sizes always come from
+    # services/stylist. Set LOCAL_LLM_URL to "" to turn it off; if Ollama
+    # isn't reachable the chat falls back to its rules-based answer.
+    LOCAL_LLM_URL: str = "http://localhost:11434"
+    LOCAL_LLM_MODEL: str = "qwen2.5:7b"
+    LOCAL_LLM_TIMEOUT_SECONDS: float = 25.0
+
+    # Google sign-in. Comma-separated OAuth client IDs whose ID tokens this
+    # server accepts: the "Web application" client ID from Google Cloud
+    # Console (the mobile app asks Google for tokens made for that ID). Empty
+    # means Google sign-in is off. A client ID is public, not a secret.
+    GOOGLE_CLIENT_IDS: str = ""
+
+    # Comma-separated emails allowed to open GET /api/v1/admin/users (the user
+    # list and sign-in numbers). An admin must ALSO have signed in with Google,
+    # because Google is the only place the email is checked as real; a
+    # password account's email is just typed in. Empty = nobody is an admin.
+    ADMIN_EMAILS: str = ""
 
 
 settings = Settings()

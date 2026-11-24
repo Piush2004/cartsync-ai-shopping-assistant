@@ -9,13 +9,11 @@ import { apiClient, ApiError } from '@/lib/client';
 import { getToken, logoutAction } from '@/app/actions/auth';
 import { AlertCircle, WifiOff, Clock } from 'lucide-react';
 
-import { HeroSection } from '@/components/dashboard/HeroSection';
-import { PersonalAssistantCard } from '@/components/dashboard/PersonalAssistantCard';
+import { WardrobeRail } from '@/components/dashboard/WardrobeRail';
 import { MeasurementCard } from '@/components/dashboard/MeasurementCard';
 import { StylistPanel } from '@/components/dashboard/StylistPanel';
 import { ProductCard } from '@/components/dashboard/ProductCard';
-import { ProfileCompletion } from '@/components/dashboard/ProfileCompletion';
-import { KnowledgeGraphCard } from '@/components/dashboard/KnowledgeGraphCard';
+import { GetStarted } from '@/components/dashboard/GetStarted';
 import { HistoryTimeline } from '@/components/dashboard/HistoryTimeline';
 import { ActivityFeed } from '@/components/dashboard/ActivityFeed';
 import { DashboardSkeleton } from '@/components/dashboard/DashboardSkeleton';
@@ -111,7 +109,7 @@ export default function DashboardPage() {
 
   if (loading) {
     return (
-      <div className="max-w-7xl mx-auto py-8">
+      <div className="w-full py-8">
         <DashboardSkeleton />
       </div>
     );
@@ -144,7 +142,7 @@ export default function DashboardPage() {
     const { icon, title, body } = copy[errorReason];
 
     return (
-      <div className="max-w-7xl mx-auto py-20 px-4 text-center flex flex-col items-center">
+      <div className="w-full py-20 px-4 text-center flex flex-col items-center">
         <div className="w-16 h-16 bg-red-500/10 rounded-full flex items-center justify-center mb-6">
           {icon}
         </div>
@@ -164,7 +162,7 @@ export default function DashboardPage() {
         animate={{ opacity: 1, scale: 1 }}
         className="text-center py-20 max-w-md mx-auto"
       >
-        <h2 className="text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-accent">Welcome to CartSync</h2>
+        <h2 className="text-3xl font-bold mb-4 bg-clip-text text-transparent silk-accent">Welcome to CartSync</h2>
         <p className="text-text-secondary mb-8 text-lg">Let's get your profile set up to start receiving personalized recommendations.</p>
         <Button variant="primary" size="lg" onClick={() => router.push('/measurements')}>
           Add Body Measurements
@@ -204,18 +202,12 @@ export default function DashboardPage() {
   if (hasPhoto) completionPercentage += 5;
 
   return (
-    <div className="max-w-7xl mx-auto pb-24">
-      <HeroSection 
-        user={user}
-        email={user_id} 
-        confidence={confidence * 100} 
-        recommendationsCount={recommendations.length} 
-        completionPercentage={completionPercentage} 
-      />
+    <div className="w-full pb-24">
+      <WardrobeRail displayName={user?.first_name || user_id.split('@')[0]} hasMeasurements={hasMeasurements} />
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-12">
-        {/* Left Column (2/3 width on desktop) */}
-        <div className="lg:col-span-2 space-y-12">
+      <div className="grid grid-cols-1 xl:grid-cols-[minmax(0,1fr)_380px] 2xl:grid-cols-[minmax(0,1fr)_440px] gap-8 2xl:gap-12 mt-12">
+        {/* Main column: fills the space left of the side column */}
+        <div className="space-y-12 min-w-0">
           
           {/* Measurement Overview */}
           {measurements && (
@@ -230,7 +222,7 @@ export default function DashboardPage() {
                 Current Dimensions
               </h2>
               <ErrorBoundary>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 2xl:gap-6">
                   {measurements.chest_circumference && <motion.div variants={fadeInUp}><MeasurementCard label="Chest" value={measurements.chest_circumference} confidence={confidence * 100} trend="stable" /></motion.div>}
                   {measurements.waist_circumference && <motion.div variants={fadeInUp}><MeasurementCard label="Waist" value={measurements.waist_circumference} confidence={confidence * 100} trend="down" /></motion.div>}
                   {measurements.hip_circumference && <motion.div variants={fadeInUp}><MeasurementCard label="Hips" value={measurements.hip_circumference} confidence={confidence * 100} /></motion.div>}
@@ -249,9 +241,6 @@ export default function DashboardPage() {
               transition={{ type: "spring", stiffness: 100, damping: 20 }}
               className="mt-8 space-y-6"
             >
-              <ErrorBoundary>
-                <PersonalAssistantCard />
-              </ErrorBoundary>
               <ErrorBoundary>
                 <StylistPanel token={token} />
               </ErrorBoundary>
@@ -274,9 +263,9 @@ export default function DashboardPage() {
                 </h2>
               </div>
               <ErrorBoundary>
-                <div className="flex overflow-x-auto gap-6 pb-8 pt-2 snap-x px-1 scrollbar-hide">
+                <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-6 pb-8 pt-2">
                   {recommendations.map((rec: any, idx: number) => (
-                    <motion.div key={idx} variants={cascadeRight} className="snap-start">
+                    <motion.div key={idx} variants={cascadeRight} className="min-w-0">
                       <ProductCard product={rec} />
                     </motion.div>
                   ))}
@@ -286,34 +275,16 @@ export default function DashboardPage() {
           )}
         </div>
 
-        {/* Right Column (1/3 width on desktop) */}
-        <div className="space-y-8">
+        {/* Side column: fixed width, stays beside the main column on wide screens */}
+        <div className="space-y-8 min-w-0 xl:sticky xl:top-24 xl:self-start">
           <motion.div 
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-50px" }}
           >
             <ErrorBoundary>
-              <ProfileCompletion 
-                percentage={completionPercentage}
-                hasBasicProfile={hasBasicProfile}
-                hasMeasurements={hasMeasurements}
-                hasStylePreferences={hasStylePreferences}
-                hasBrands={hasBrands}
-                hasRecHistory={hasRecHistory}
-                hasFeedback={hasFeedback}
-                hasPhoto={hasPhoto}
-              />
+              <GetStarted hasMeasurements={hasMeasurements} />
             </ErrorBoundary>
-          </motion.div>
-          
-          <motion.div 
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ delay: 0.1 }}
-          >
-            <ErrorBoundary><KnowledgeGraphCard graph={graph} /></ErrorBoundary>
           </motion.div>
           
           <motion.div 

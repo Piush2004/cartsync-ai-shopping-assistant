@@ -45,3 +45,17 @@ def get_current_user(
     if user is None:
         raise credentials_exception
     return user
+
+
+def get_admin_user(current_user: User = Depends(get_current_user)) -> User:
+    """
+    Gate for the user list. Needs BOTH: an email in ADMIN_EMAILS, and an
+    account that came through Google sign-in. A password account's email is
+    never checked, so without the second rule someone could register an
+    admin's address before the admin does and become admin.
+    """
+    admins = {e.strip().lower() for e in settings.ADMIN_EMAILS.split(",") if e.strip()}
+    email = (current_user.email or "").lower()
+    if current_user.google_sub is None or email not in admins:
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Not allowed")
+    return current_user

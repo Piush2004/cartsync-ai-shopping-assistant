@@ -13,12 +13,16 @@ export function StylistPanel({ token }: { token: string }) {
   const [loading, setLoading] = useState(false);
   const [isSparkling, setIsSparkling] = useState(false);
   const [messages, setMessages] = useState<any[]>([
-    { role: "assistant", content: "Welcome! I'm your CartSync AI Stylist. I can help you with sizing, products, and style recommendations." }
+    { role: "assistant", content: "Hi. Ask me which size to buy, or how a brand fits." }
   ]);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    // Only follow the conversation once there is one. Scrolling on the
+    // opening welcome message dragged the whole dashboard down on load.
+    if (messages.length > 1) {
+      messagesEndRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
   };
 
   useEffect(() => {
@@ -47,7 +51,7 @@ export function StylistPanel({ token }: { token: string }) {
       });
       
       triggerSparkle();
-      setMessages(prev => [...prev, { role: "assistant", content: data.answer, sources: data.sources }]);
+      setMessages(prev => [...prev, { role: "assistant", content: data.answer, answeredBy: data.answered_by }]);
     } catch (e: any) {
       console.error(e);
       toast.error(e.message || "Failed to connect to the reasoning engines.");
@@ -59,7 +63,7 @@ export function StylistPanel({ token }: { token: string }) {
 
   const suggestions = [
     "What size should I buy?",
-    "Show Nike shirts",
+    "Does Zara run small?",
     "I want oversized clothes"
   ];
 
@@ -84,10 +88,6 @@ export function StylistPanel({ token }: { token: string }) {
           </motion.div>
           AI Stylist
         </h2>
-        <div className="flex items-center gap-2 px-3 py-1 bg-accent-emerald/10 border border-accent-emerald/20 rounded-full">
-          <div className="w-2 h-2 rounded-full bg-accent-emerald animate-pulse" />
-          <span className="text-xs font-semibold text-accent-emerald">Live</span>
-        </div>
       </div>
       
       {/* Messages */}
@@ -104,17 +104,13 @@ export function StylistPanel({ token }: { token: string }) {
               <div 
                 className={`max-w-[85%] sm:max-w-[75%] p-4 rounded-2xl shadow-sm ${
                   msg.role === "user" 
-                    ? "bg-gradient-accent text-white rounded-tr-sm" 
+                    ? "silk-accent text-white rounded-tr-sm" 
                     : "bg-bg-elevated/80 backdrop-blur-sm border border-border text-text-primary rounded-tl-sm"
                 }`}
               >
                 <p className="text-sm leading-relaxed">{msg.content}</p>
-                {msg.sources && (
-                  <div className="mt-3 pt-3 border-t border-border-active/20">
-                    <p className="text-[10px] uppercase tracking-widest text-text-muted font-bold">
-                      Sources: {msg.sources.join(" · ")}
-                    </p>
-                  </div>
+                {msg.answeredBy === "rules" && (
+                  <p className="mt-2 text-xs text-text-muted">Quick answer. The full stylist is offline right now.</p>
                 )}
               </div>
             </motion.div>
@@ -151,7 +147,7 @@ export function StylistPanel({ token }: { token: string }) {
               variants={staggerContainer}
               className="mb-4"
             >
-              <p className="text-xs font-semibold text-text-muted uppercase tracking-wider mb-2">Suggestions</p>
+              <p className="text-xs font-semibold text-text-muted mb-2">Try asking</p>
               <div className="flex flex-wrap gap-2">
                 {suggestions.map((text, i) => (
                   <motion.button 
@@ -170,7 +166,7 @@ export function StylistPanel({ token }: { token: string }) {
         </AnimatePresence>
         
         <div className="relative flex items-center group">
-          <div className="absolute inset-0 bg-gradient-accent opacity-0 group-focus-within:opacity-20 blur-xl transition-opacity rounded-2xl" />
+          <div className="absolute inset-0 silk-accent opacity-0 group-focus-within:opacity-20 blur-xl transition-opacity rounded-2xl" />
           <input
             type="text"
             value={input}

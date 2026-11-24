@@ -1,9 +1,22 @@
 from typing import List
+from . import catalog_import
 from .types import Product
 
 class CatalogEngine:
     @staticmethod
     def get_all_products() -> List[Product]:
+        # Products read from real pages (import_catalog.py) come after the
+        # seed ones; a seed product wins if an id is ever repeated.
+        products = CatalogEngine._seed_products()
+        known = {p.id for p in products}
+        for imported in catalog_import.load_imported_products():
+            if imported.id not in known:
+                known.add(imported.id)
+                products.append(imported)
+        return products
+
+    @staticmethod
+    def _seed_products() -> List[Product]:
         return [
             Product(id="nike_air_tee", name="Nike Air Tee", brand="Nike", category="T-Shirt", fit_type="Relaxed"),
             Product(id="nike_pro_tight", name="Nike Pro Tight Fit", brand="Nike", category="T-Shirt", fit_type="Slim"),

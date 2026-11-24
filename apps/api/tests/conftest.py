@@ -18,6 +18,14 @@ from models.user import User
 
 
 @pytest.fixture(autouse=True)
+def disable_local_llm(monkeypatch):
+    # The chat endpoint calls a local Ollama model when one is configured.
+    # Tests must never depend on (or wait for) a real model on this machine.
+    from core.config import settings
+    monkeypatch.setattr(settings, "LOCAL_LLM_URL", "")
+
+
+@pytest.fixture(autouse=True)
 def reset_rate_limiter():
     # The limiter's in-memory storage is a module-level singleton shared by
     # every request the app handles, so without a reset here, request counts

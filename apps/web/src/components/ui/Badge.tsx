@@ -26,7 +26,7 @@ export function Badge({ className, variant = "default", children, ...props }: Ba
       {...props}
     >
       {variant === "premium" && (
-        <div className="absolute inset-0 rounded-full p-[1px] bg-gradient-accent -z-10 [mask-image:linear-gradient(#fff_0_0)] [mask-composite:exclude]" />
+        <div className="absolute inset-0 rounded-full p-[1px] silk-accent -z-10 [mask-image:linear-gradient(#fff_0_0)] [mask-composite:exclude]" />
       )}
       {children}
     </div>

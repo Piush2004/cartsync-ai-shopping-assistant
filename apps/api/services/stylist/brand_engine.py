@@ -1,23 +1,25 @@
-from .types import StylistContext
+from .types import SIZE_ORDER, StylistContext
+
+# Size steps to apply for a brand, relative to the general chart. Only
+# brands with a known tendency are listed -- every other brand is left at
+# the general-chart size (and gets lower brand confidence, see
+# confidence_engine.py). Add an entry here only with a real source for it;
+# an invented offset is worse than none.
+BRAND_SIZE_STEPS = {
+    "zara": 1,     # runs small -> size up
+    "uniqlo": 0,   # true to size
+}
+
 
 class BrandEngine:
     @staticmethod
+    def has_brand_data(brand_name: str) -> bool:
+        return brand_name.lower() in BRAND_SIZE_STEPS
+
+    @staticmethod
     def adjust_for_brand(ctx: StylistContext, base_size: str) -> str:
-        # Simplified, hardcoded brand-fit adjustment table (not "mock" -- this
-        # is the real, deterministic sizing logic for V1; there is no
-        # external brand-sizing database to query yet).
-        sizes = ["XS", "S", "M", "L", "XL"]
-        if base_size not in sizes:
+        if base_size not in SIZE_ORDER:
             return base_size
-        
-        idx = sizes.index(base_size)
-        
-        # Zara runs small -> size up
-        if ctx.brand_name.lower() == "zara":
-            return sizes[min(idx + 1, len(sizes) - 1)]
-            
-        # Uniqlo runs slightly loose but we'll say true to size
-        if ctx.brand_name.lower() == "uniqlo":
-            return base_size
-            
-        return base_size
+        step = BRAND_SIZE_STEPS.get(ctx.brand_name.lower(), 0)
+        idx = SIZE_ORDER.index(base_size) + step
+        return SIZE_ORDER[max(0, min(idx, len(SIZE_ORDER) - 1))]

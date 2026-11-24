@@ -19,30 +19,36 @@ export function TypewriterText({
 
   useEffect(() => {
     let timeout: NodeJS.Timeout;
-    
+    let doneTimeout: NodeJS.Timeout;
+
     // Start delay
     const startTimeout = setTimeout(() => {
       setIsTyping(true);
       let i = 0;
-      
+
       const typeNextChar = () => {
         if (i < text.length) {
-          setDisplayedText((prev) => prev + text.charAt(i));
+          // Slice by a number that is final before React runs the update. The
+          // old `(prev) => prev + text.charAt(i)` read `i` later, after it had
+          // already been incremented, so the first letter was skipped
+          // ("AI-powered" showed as "I-powered").
           i++;
+          setDisplayedText(text.slice(0, i));
           timeout = setTimeout(typeNextChar, speed);
         } else {
           setIsTyping(false);
           // Keep cursor blinking a bit then remove
-          setTimeout(() => setIsDone(true), 2000);
+          doneTimeout = setTimeout(() => setIsDone(true), 2000);
         }
       };
-      
+
       typeNextChar();
     }, delay);
 
     return () => {
       clearTimeout(startTimeout);
       clearTimeout(timeout);
+      clearTimeout(doneTimeout);
     };
   }, [text, speed, delay]);
 

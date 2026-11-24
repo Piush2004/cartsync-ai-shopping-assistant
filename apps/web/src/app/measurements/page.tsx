@@ -70,8 +70,11 @@ export default function MeasurementsPage() {
         height: parseFloat(height) || undefined,
         chest: parseFloat(chest) || undefined,
         waist: parseFloat(waist) || undefined,
-        hips: parseFloat(hips) || undefined,
-        shoulders: parseFloat(shoulders) || undefined,
+        // The API reads `hip` and `shoulder` (the camera scan and the phone app
+        // send those names). This form used to send `hips`/`shoulders`, so the
+        // two values were silently dropped.
+        hip: parseFloat(hips) || undefined,
+        shoulder: parseFloat(shoulders) || undefined,
         inseam: parseFloat(inseam) || undefined,
         source: 'manual_entry'
       };
@@ -102,7 +105,7 @@ export default function MeasurementsPage() {
         initial="initial"
         animate="animate"
         variants={staggerContainer}
-        className="max-w-3xl mx-auto"
+        className="w-full"
       >
         <motion.div variants={fadeInUp} className="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
@@ -131,7 +134,7 @@ export default function MeasurementsPage() {
 
         <GlowCard className="p-8">
           <form onSubmit={handleSubmit}>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 xl:gap-16">
               <motion.div variants={staggerItem} className="space-y-6">
                 <div>
                   <h3 className="text-sm font-semibold text-text-primary uppercase tracking-wider mb-4 border-b border-border pb-2">Core Dimensions (cm)</h3>

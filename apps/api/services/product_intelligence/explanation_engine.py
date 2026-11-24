@@ -10,7 +10,7 @@ class ExplanationEngine:
         if pref_fit == product.fit_type.lower():
             reasons.append(f"Perfectly matches your preference for {product.fit_type.lower()} fit.")
             
-        if product.brand in req.brand_affinity:
+        if product.brand.lower() in {b.lower() for b in req.brand_affinity}:
             reasons.append(f"From your favorite brand {product.brand}.")
             
         if score > 0.90:

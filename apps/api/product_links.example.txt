@@ -1,0 +1,4 @@
+# Product-page links for import_catalog.py. One per line. Copy this file to product_links.txt.
+# Allowed shops: myntra.com, amazon.in / .com / .co.uk, flipkart.com
+https://www.myntra.com/tshirts/crocodile/crocodile-men-solid-polo-collar-cotton-slim-fit-t-shirt/30684779/buy
+https://www.myntra.com/tshirts/roadster/roadster-men-black-high-low-cotton-t-shirt/11545114/buy

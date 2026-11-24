@@ -7,6 +7,10 @@ export interface LinkImportResult {
   image_url: string;
   price: number | null;
   source_url: string;
+  // Read off the product title by the backend. department is null when the
+  // title doesn't say whether it's men's or women's.
+  category: "top" | "bottom" | "dress";
+  department: "women" | "men" | null;
   // null when the user has no measurements on file yet, or the page's
   // brand couldn't be determined -- not an error, just no fit guide yet.
   fit_guide: StylistRecommendation | null;

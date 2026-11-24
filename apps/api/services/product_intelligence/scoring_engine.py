@@ -14,7 +14,7 @@ class ScoringEngine:
             score += 0.20 # partial match
             
         # 2. Brand Affinity Match (Weight: 30%)
-        if product.brand in req.brand_affinity:
+        if product.brand.lower() in {b.lower() for b in req.brand_affinity}:
             score += 0.30
             
         # 3. Base Stylist Confidence (Weight: 30%)

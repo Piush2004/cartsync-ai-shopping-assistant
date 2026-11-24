@@ -4,12 +4,13 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { fadeInUp, staggerContainer } from "@/lib/motion";
 import { Button } from "@/components/ui/Button";
-import { Sparkles, Upload, AlertCircle, RotateCcw, Link2, Ruler } from "lucide-react";
+import { Sparkles, Upload, AlertCircle, RotateCcw, Link2, Shirt } from "lucide-react";
 import { getToken } from "@/app/actions/auth";
 import { vtonApi, GarmentSource } from "@/lib/vton";
 import { linkImportApi, LinkImportResult } from "@/lib/link_import";
 import { ApiError } from "@/lib/client";
 import { formatINR } from "@/lib/format";
+import { SizeTag } from "@/components/tryon/SizeTag";
 
 type ImageSlot = {
   file: File | null;
@@ -211,8 +212,8 @@ export default function TryOnPage() {
   const canSubmit = Boolean(personSlot.file && garmentSource) && !loading;
 
   return (
-    <div className="min-h-screen bg-bg-primary pt-24 pb-12 px-6">
-      <div className="max-w-5xl mx-auto">
+    <div className="bg-bg-primary pb-12">
+      <div className="w-full">
         <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
           <motion.div variants={fadeInUp} className="mb-10">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-accent-blue/20 bg-accent-blue/5 text-accent-blue text-sm font-medium mb-4">
@@ -225,6 +226,8 @@ export default function TryOnPage() {
             </p>
           </motion.div>
 
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-10 2xl:gap-16 items-start">
+          <div className="min-w-0">
           <motion.div variants={fadeInUp} className="flex flex-col md:flex-row gap-6 mb-4">
             <ImageUploadCard
               label="Your Photo"
@@ -273,19 +276,18 @@ export default function TryOnPage() {
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="flex items-center gap-3 bg-accent-blue/5 border border-accent-blue/20 rounded-xl p-4 mb-6 max-w-xl mx-auto"
+              className="flex items-center gap-6 border border-border bg-bg-card rounded-2xl px-6 py-5 mb-6"
             >
-              <Ruler className="w-5 h-5 text-accent-blue shrink-0" />
+              <SizeTag key={linkResult.fit_guide.recommended_size} size={linkResult.fit_guide.recommended_size} />
               <div>
-                <p className="text-sm font-semibold text-text-primary">
-                  Recommended size: {linkResult.fit_guide.recommended_size}
-                  <span className="text-text-muted font-normal ml-1">
-                    ({Math.round(linkResult.fit_guide.confidence.overall * 100)}% confidence)
-                  </span>
+                <p className="text-lg font-bold text-text-primary">
+                  Buy size {linkResult.fit_guide.recommended_size}
                 </p>
-                {linkResult.fit_guide.reasoning[0] && (
-                  <p className="text-xs text-text-secondary mt-0.5">{linkResult.fit_guide.reasoning[0]}</p>
-                )}
+                <ul className="mt-2 space-y-1.5">
+                  {linkResult.fit_guide.reasoning.map((reason, i) => (
+                    <li key={i} className="text-sm text-text-secondary leading-snug">{reason}</li>
+                  ))}
+                </ul>
               </div>
             </motion.div>
           )}
@@ -293,13 +295,13 @@ export default function TryOnPage() {
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-center text-xs text-text-muted mb-6"
+              className="text-xs text-text-muted mb-6"
             >
               Add your body measurements to get a fit recommendation for this item.
             </motion.div>
           )}
 
-          <motion.div variants={fadeInUp} className="flex justify-center mb-10">
+          <motion.div variants={fadeInUp} className="flex mb-6">
             <Button
               variant="primary"
               size="lg"
@@ -314,7 +316,7 @@ export default function TryOnPage() {
           {error && (
             <motion.div
               variants={fadeInUp}
-              className="flex items-start gap-3 bg-accent-rose/5 border border-accent-rose/20 rounded-xl p-4 mb-8 max-w-xl mx-auto"
+              className="flex items-start gap-3 bg-accent-rose/5 border border-accent-rose/20 rounded-xl p-4 mb-8"
             >
               <AlertCircle className="w-5 h-5 text-accent-rose shrink-0 mt-0.5" />
               <div>
@@ -324,11 +326,13 @@ export default function TryOnPage() {
             </motion.div>
           )}
 
-          {resultUrl && (
+          </div>
+          <div className="min-w-0 xl:sticky xl:top-24">
+          {resultUrl ? (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="max-w-xl mx-auto"
+              className="w-full"
             >
               <div className="flex items-center justify-between mb-3">
                 <p className="text-sm font-semibold text-text-primary">Result</p>
@@ -345,7 +349,15 @@ export default function TryOnPage() {
                 <img src={resultUrl} alt="Virtual try-on result" className="w-full h-auto" />
               </div>
             </motion.div>
+          ) : (
+            <div className="rounded-2xl border-2 border-dashed border-border bg-bg-card/60 min-h-[420px] flex flex-col items-center justify-center text-center px-8">
+              <Shirt className="w-10 h-10 text-text-muted mb-4" aria-hidden="true" />
+              <p className="text-lg font-bold text-text-primary">Your try-on shows up here</p>
+              <p className="text-sm text-text-secondary mt-2 max-w-xs">Add your photo and a garment on the left, then press Generate Try-On.</p>
+            </div>
           )}
+          </div>
+          </div>
         </motion.div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import math
 from fastapi import FastAPI
-from routers import auth, measurement, graph, stylist, product_intelligence, conversation, testing, compute, vton, link_import
+from routers import auth, admin, measurement, graph, stylist, product_intelligence, conversation, testing, compute, vton, link_import
 import models
 import logging
 import uuid
@@ -53,6 +53,7 @@ app.add_middleware(
 )
 
 app.include_router(auth.router, prefix="/api/v1/auth", tags=["auth"])
+app.include_router(admin.router, prefix="/api/v1/admin", tags=["admin"])
 app.include_router(measurement.router, prefix="/api/v1/measurement", tags=["measurement"])
 app.include_router(graph.router, prefix="/api/v1/graph", tags=["graph"])
 app.include_router(stylist.router, prefix="/api/v1/stylist", tags=["stylist"])
