@@ -1,8 +1,17 @@
-'use server';
-
-import { cookies } from 'next/headers';
+// Browser-side sign-in. The site is a static export (no Next.js server), so the
+// login token lives in this browser's localStorage and is sent as a Bearer
+// header to the API. These keep the names the pages already import.
 import { authApi } from '@/lib/auth';
-import { redirect } from 'next/navigation';
+
+const TOKEN_KEY = 'cartsync_access_token';
+
+function storage(): Storage | null {
+  try {
+    return typeof window === 'undefined' ? null : window.localStorage;
+  } catch {
+    return null; // private window or blocked site data
+  }
+}
 
 export async function loginAction(formData: FormData) {
   const email = formData.get('email') as string;
@@ -16,30 +25,22 @@ export async function loginAction(formData: FormData) {
     params.append('password', password);
 
     const tokenResponse = await authApi.login(params);
-    
-    // Set HTTP-only cookie
-    const cookieStore = await cookies();
-    cookieStore.set('access_token', tokenResponse.access_token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      maxAge: 60 * 60 * 24 * 7, // 1 week
-      path: '/',
-    });
-
+    const store = storage();
+    if (!store) return { error: 'Your browser blocks site data, so sign-in cannot be saved.' };
+    store.setItem(TOKEN_KEY, tokenResponse.access_token);
   } catch (error: any) {
     return { error: error.message };
   }
 
-  redirect('/dashboard');
+  window.location.assign('/dashboard');
+  return undefined;
 }
 
 export async function logoutAction() {
-  const cookieStore = await cookies();
-  cookieStore.delete('access_token');
-  redirect('/login');
+  storage()?.removeItem(TOKEN_KEY);
+  window.location.assign('/login');
 }
 
 export async function getToken() {
-  const cookieStore = await cookies();
-  return cookieStore.get('access_token')?.value || null;
+  return storage()?.getItem(TOKEN_KEY) || null;
 }

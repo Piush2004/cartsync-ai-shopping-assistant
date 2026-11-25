@@ -46,6 +46,9 @@ services:
       # on why allow_origins=["*"] is never used here.
       - key: CORS_ALLOWED_ORIGINS
         sync: false
+      # No Ollama on Render, so the stylist chat uses its rules-based answers.
+      - key: LOCAL_LLM_URL
+        value: ""
       # Wires the backend to the Postgres database defined above instead of
       # SQLite -- see apps/api/database.py's comment on why SQLite doesn't
       # survive a redeploy on most hosting platforms.
